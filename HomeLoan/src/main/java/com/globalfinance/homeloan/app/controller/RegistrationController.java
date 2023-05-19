@@ -24,7 +24,7 @@ import com.globalfinance.homeloan.app.service.RegistrationService;
 @RequestMapping("/registration")
 @CrossOrigin("*")
 public class RegistrationController 
-{
+{      
 	@Autowired
 	RegistrationService rs;
 	
