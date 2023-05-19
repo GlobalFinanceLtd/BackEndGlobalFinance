@@ -52,13 +52,13 @@ public class RegistrationController
 	public ResponseEntity<BaseResponse<Registration>> search(@PathVariable Integer userId)
 	{
 		Optional<Registration> op=rs.search(userId);
-		if(op.isEmpty())
+		if(!op.isPresent())
 		{
 			RegistrationNotFound rnf=new RegistrationNotFound("Registration NOT found !!");
 			throw rnf;
 		}
 		else {
-			BaseResponse<Registration> bs=new BaseResponse<Registration>(200, "Fetched Registration Single Details !!", op, new Date());
+			BaseResponse<Registration> bs=new BaseResponse<Registration>(200, "Fetched Registration Single Details !!", op.get(), new Date());
 			ResponseEntity<BaseResponse<Registration>> re=new ResponseEntity<BaseResponse<Registration>>(bs,HttpStatus.FOUND);
 			return re;
 		}

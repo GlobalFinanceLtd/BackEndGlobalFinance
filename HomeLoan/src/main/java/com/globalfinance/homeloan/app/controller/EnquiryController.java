@@ -24,6 +24,9 @@ import com.globalfinance.homeloan.app.service.EnquiryService;
 @CrossOrigin("*")
 public class EnquiryController 
 {
+	
+	
+	
 	@Autowired
 	EnquiryService es;
 	
@@ -51,7 +54,7 @@ public class EnquiryController
 	public ResponseEntity<BaseResponse<Enquiry>> search(@PathVariable Integer userId)
 	{
 		Optional<Enquiry> op=es.search(userId);
-		if(op.isEmpty())
+		if(!op.isPresent())
 		{
 			EnquiryNotFound enf=new EnquiryNotFound("Enquiry NOT found !!");
 			throw enf;
