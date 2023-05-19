@@ -27,7 +27,7 @@ public class RegistrationController
 {      
 	@Autowired
 	RegistrationService rs;
-	
+	   
 	@PostMapping("/postregistration")
 	public ResponseEntity<BaseResponse<Registration>> post(@RequestBody Registration r)
 	{
