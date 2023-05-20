@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.globalfinance.homeloan.app.exception.EnquiryNotFound;
 import com.globalfinance.homeloan.app.model.Enquiry;
 import com.globalfinance.homeloan.app.responce.BaseResponse;
+import com.globalfinance.homeloan.app.responce.CibilCheck;
 import com.globalfinance.homeloan.app.service.EnquiryService;
 
 @RestController
@@ -29,6 +30,12 @@ public class EnquiryController
 	
 	@Autowired
 	EnquiryService es;
+	
+	
+	public int chekcibil() {
+		return CibilCheck.checkCibil();
+		 
+	}
 	
 	@PostMapping(value = "/postenquiry")
 	public ResponseEntity<BaseResponse<Enquiry>> post(@RequestBody Enquiry e)
@@ -44,7 +51,8 @@ public class EnquiryController
 	public ResponseEntity<BaseResponse<List<Enquiry>>> get()
 	{
 		List<Enquiry> e=es.get();
-		BaseResponse bs=new BaseResponse<>(200,"All Enquiry Details ...",e, new Date());
+		int chekcibil = chekcibil();
+		BaseResponse bs=new BaseResponse<>(200,"All Enquiry Details ...",e, new Date(),chekcibil);
 		ResponseEntity<BaseResponse<List<Enquiry>>> re=new ResponseEntity<BaseResponse<List<Enquiry>>>(bs,HttpStatus.OK);
 		return re;
 	}

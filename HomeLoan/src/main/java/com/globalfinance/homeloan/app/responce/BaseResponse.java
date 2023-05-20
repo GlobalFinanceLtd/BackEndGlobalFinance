@@ -18,6 +18,18 @@ public class BaseResponse<T>
 	private String message;
 	private T ResponseBody;
 	private Date date;
+	private int check;
 	
 
+	 
+
+
+	public BaseResponse(Integer statusCode, String message, T responseBody, Date date) {
+		super();
+		this.statusCode = statusCode;
+		this.message = message;
+		ResponseBody = responseBody;
+		this.date = date;
+	}
+	
 }
